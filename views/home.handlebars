@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" src="public/js/scripts.js"></script>
+    </head>
+
+    <body>
+        <form action="/insert" method="POST">
+            <label>Username</label>
+            <input type="text" id="items" name="username">
+            <label>List Your Task</label>
+            <input type="text" name="list_items">
+            <button type="submit" onClick="insertItems()">Send</button>
+        </form>
+
+        <div id="showResults"></div>
+    </body>
+</html>
