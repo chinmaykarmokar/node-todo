@@ -5,14 +5,20 @@
     </head>
 
     <body>
+        <h1>Welcome {{username}}</h1>
         <form action="/insert" method="POST">
-            <label>Username</label>
-            <input type="text" id="items" name="username">
+            <input type="text" id="items" name="username" value="{{username}}" style="display: none;">
             <label>List Your Task</label>
-            <input type="text" name="list_items">
+            <input type="text" id="items" name="list_items" value="{{listItems}}">
             <button type="submit" onClick="insertItems()">Send</button>
         </form>
 
-        <div id="showResults"></div>
+        <div id="showResults">
+            {{#each result}}
+                <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
+                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
+                <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button>
+            {{/each}}
+        </div>
     </body>
 </html>

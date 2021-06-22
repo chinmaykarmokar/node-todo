@@ -3,6 +3,9 @@ const exphbs = require('express-handlebars');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
+let userIsLoggedIn = {}
+let todoItemID = 1;
+
 const app = express();
 
 // Serving Static Files
@@ -15,6 +18,8 @@ app.set('view engine', 'handlebars');
 // Using Body-Parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Databse Connection Credentials
 
 let connection = mysql.createConnection({
     host: "sql6.freemysqlhosting.net",
@@ -33,7 +38,7 @@ connection.connect((err) => {
 // GET Requests
 
 app.get('/', (req,res) => {
-    res.render('home', {layout: false});
+    res.render('login', {layout: false});
 })
 
 app.get('/signup', (req,res) => {
@@ -42,22 +47,7 @@ app.get('/signup', (req,res) => {
 
 // POST Requests
 
-app.post('/insert', (req,res) => {
-    let username = req.body.username;
-    let listname = req.body.list_items;
-
-    let insertListQuery = "INSERT INTO sample_todo (username, todolist) VALUES (" + "'" + username + "'" + ", " + "'" + listname + "'" + ")";
-
-    connection.query(insertListQuery, (err) => {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.send('Your task is updated successfully!');
-            console.log(insertListQuery);
-        }
-    })
-})
+// Register
 
 app.post('/register', (req,res) => {
     let fName = req.body.f_name;
@@ -65,7 +55,7 @@ app.post('/register', (req,res) => {
     let userName = req.body.u_name;
     let password = req.body.password;
 
-    let insertQuery = "INSERT INTO users_table (first_name, last_name, user_name, password) VALUES (" + "'" + fName + "'" + ", " + "'" + lName + "'" + ", " + "'" + userName + "'" + ", " + "'" + password + "'" + ")";
+    let insertQuery = "INSERT INTO users_table (first_name, last_name, username, password) VALUES (" + "'" + fName + "'" + ", " + "'" + lName + "'" + ", " + "'" + userName + "'" + ", " + "'" + password + "'" + ")";
 
     connection.query(insertQuery, (err) => {
         if (err) {
@@ -77,6 +67,66 @@ app.post('/register', (req,res) => {
         }
     })
 })
+
+// Login
+
+app.post('/login', (req,res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+
+    let userLogInCredentials = "SELECT * FROM users_table WHERE username = '" + username + "' AND password = '" + password + "'";
+
+    connection.query(userLogInCredentials, (err,result,fields) => {
+            if(result == 0) {
+                res.render('login', {layout:false});
+            }
+
+            if(result != 0) {
+                let usernameInDB = result[0].username;
+                let passwordInDB = result[0].password;
+
+                if (usernameInDB == username && passwordInDB == password) {
+                    userIsLoggedIn[username] = 1;
+                    res.render('home', {
+                        layout: false,
+                        username: username
+                    });
+                    console.log(userIsLoggedIn);
+                }
+            }
+    })
+
+    console.log(userLogInCredentials);
+})
+
+// Insert ToDo Items
+
+app.post('/insert', (req,res) => {
+    let username = req.body.username;
+    let listItems = req.body.list_items;
+
+    let insertListQuery = "INSERT INTO todo_list (username, todo_item) VALUES ('" + username + "'" + ", " + "'" + listItems + "'" + ")";
+
+    connection.query(insertListQuery, (err,result,fields) => {
+        if (err) {
+            res.send(err);
+        }
+        
+        else {
+            let showExistingLists = "SELECT * FROM todo_list WHERE username='" + username + "'";
+
+            connection.query(showExistingLists, (err,result,fields) => {
+                res.render('home', {
+                    layout:false,
+                    username: username,
+                    result: result
+                });
+                console.log(result);
+            });
+        }
+    })
+})
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
