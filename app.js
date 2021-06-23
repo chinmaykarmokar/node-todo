@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const url = require('url');
 
 let userIsLoggedIn = {}
 let todoItemID = 1;
@@ -45,6 +46,19 @@ app.get('/signup', (req,res) => {
     res.render('register', {layout: false});
 })
 
+// app.get('/home', (req,res) => {
+//     let showExistingLists = "SELECT * FROM todo_list WHERE username='" + username + "'";
+
+//     connection.query(showExistingLists, (err,result,fields) => {
+//         res.render('home', {
+//             layout:false,
+//             username: username,
+//             result: result
+//         });
+//         console.log(result);
+//     });
+// })
+
 // POST Requests
 
 // Register
@@ -70,7 +84,7 @@ app.post('/register', (req,res) => {
 
 // Login
 
-app.post('/login', (req,res) => {
+app.post('/', (req,res) => {
     let username = req.body.username;
     let password = req.body.password;
 
@@ -87,9 +101,15 @@ app.post('/login', (req,res) => {
 
                 if (usernameInDB == username && passwordInDB == password) {
                     userIsLoggedIn[username] = 1;
-                    res.render('home', {
-                        layout: false,
-                        username: username
+                    let showExistingLists = "SELECT * FROM todo_list WHERE username='" + username + "'";
+
+                    connection.query(showExistingLists, (err,result,fields) => {
+                        res.render('home', {
+                            layout:false,
+                            username: username,
+                            result: result
+                        });
+                        //console.log(result);
                     });
                     console.log(userIsLoggedIn);
                 }
@@ -101,7 +121,7 @@ app.post('/login', (req,res) => {
 
 // Insert ToDo Items
 
-app.post('/insert', (req,res) => {
+app.post('/home', (req,res) => {
     let username = req.body.username;
     let listItems = req.body.list_items;
 
@@ -127,6 +147,29 @@ app.post('/insert', (req,res) => {
     })
 })
 
+app.get('/delete', (req,res) => {
+    let todoListItemvalue = url.parse(req.url,true).query;
+    let deleteQuery = "DELETE FROM todo_list WHERE todo_item=" + " '" + todoListItemvalue.todolistItem + "'" + " AND username=" + " '" + todoListItemvalue.username + "'";
+    
+    connection.query(deleteQuery, (err,result) => {
+        if (err) {
+            res.send(err);
+        }
+        else{
+            let showExistingLists = "SELECT * FROM todo_list WHERE username='" + todoListItemvalue.username + "'";
+
+            connection.query(showExistingLists, (err,result,fields) => {
+                res.render('home', {
+                    layout:false,
+                    username: todoListItemvalue.username,
+                    result: result
+                });
+                console.log(result);
+            });
+        }
+    })
+    //res.send(todoListItemvalue);
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

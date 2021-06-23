@@ -4,12 +4,21 @@
     </head>
 
     <body>
-        <form action="/login" method="POST">
+        <form action="/" method="POST">
             <label>Username</label>
             <input type="text" name="username">
             <label>Password</label>
-            <input type="text" name="password">
+            <input type="password" name="password">
             <button type="submit">Login</button>
         </form>
+
+        <div id="showResults">
+            {{#each result}}
+                <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
+                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
+                {{!-- <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button> --}}
+                <a href="/delete?todolistItem={{this.todo_item}}">Delete</a>
+            {{/each}}
+        </div>
     </body>
 </html>
