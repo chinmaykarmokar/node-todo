@@ -15,5 +15,13 @@
     "express-handlebars": "^5.3.2",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chinmaykarmokar/node-todo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chinmaykarmokar/node-todo/issues"
+  },
+  "homepage": "https://github.com/chinmaykarmokar/node-todo#readme"
 }
