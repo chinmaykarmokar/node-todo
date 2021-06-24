@@ -46,19 +46,6 @@ app.get('/signup', (req,res) => {
     res.render('register', {layout: false});
 })
 
-// app.get('/home', (req,res) => {
-//     let showExistingLists = "SELECT * FROM todo_list WHERE username='" + username + "'";
-
-//     connection.query(showExistingLists, (err,result,fields) => {
-//         res.render('home', {
-//             layout:false,
-//             username: username,
-//             result: result
-//         });
-//         console.log(result);
-//     });
-// })
-
 // POST Requests
 
 // Register
@@ -123,9 +110,10 @@ app.post('/', (req,res) => {
 
 app.post('/home', (req,res) => {
     let username = req.body.username;
+    let todoListName = req.body.todo_list_name;
     let listItems = req.body.list_items;
 
-    let insertListQuery = "INSERT INTO todo_list (username, todo_item) VALUES ('" + username + "'" + ", " + "'" + listItems + "'" + ")";
+    let insertListQuery = "INSERT INTO todo_list (username, todo_list_name, todo_item) VALUES ('" + username + "'" + ", " + "'" + todoListName + "'" + ", " + "'" + listItems + "'" + ")";
 
     connection.query(insertListQuery, (err,result,fields) => {
         if (err) {
@@ -149,7 +137,7 @@ app.post('/home', (req,res) => {
 
 app.get('/delete', (req,res) => {
     let todoListItemvalue = url.parse(req.url,true).query;
-    let deleteQuery = "DELETE FROM todo_list WHERE todo_item=" + " '" + todoListItemvalue.todolistItem + "'" + " AND username=" + " '" + todoListItemvalue.username + "'";
+    let deleteQuery = "DELETE FROM todo_list WHERE todo_item=" + " '" + todoListItemvalue.todolistItem + "'" + " AND username=" + " '" + todoListItemvalue.username + "'" + "AND todo_list_name= '" + todoListItemvalue.todolistName + "'";
     
     connection.query(deleteQuery, (err,result) => {
         if (err) {

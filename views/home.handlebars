@@ -8,6 +8,8 @@
         <h1>Welcome {{username}}</h1>
         <form action="/home" method="POST">
             <input type="text" id="items" name="username" value="{{username}}" style="display: none;">
+            <label>Name Of Your Todo List</label>
+            <input type="text" id="items" name="todo_list_name" value="{{todoListName}}">
             <label>List Your Task</label>
             <input type="text" id="items" name="list_items" value="{{listItems}}">
             <button type="submit" onClick="insertItems()">Send</button>
@@ -18,7 +20,7 @@
                 <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
                 <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
                 {{!-- <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button> --}}
-                <a href="/delete?username={{this.username}}&todolistItem={{this.todo_item}}">Delete</a>
+                <a href="/delete?username={{this.username}}&todolistName={{this.todo_list_name}}&todolistItem={{this.todo_item}}">Delete</a>
             {{/each}}
         </div>
     </body>
