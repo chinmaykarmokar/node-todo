@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" src="public/js/scripts.js"></script>
+    </head>
+
+    <body>
+        <h1>Welcome {{username}}</h1>
+        <form action="/add" method="POST">
+            <input type="text" id="items" name="username" value="{{username}}" style="display: none;">
+            <input type="text" id="items" name="todo_list_name" value="{{todolistName}}" style="display: none;">
+            <h3>You are using {{todolistName}} created by you. All items you add now will be added in this list.</h3>
+            <label>List item in the {{todolistName}} list</label>
+            <input type="text" id="items" name="todo_list_item">
+            <button type="submit" onClick="insertItems()">Send</button>
+        </form>
+
+        <div id="showResults">
+            {{#each result}}
+                <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
+                <input type="text" id="items" name="todo_list_name" value="{{todolistName}}" style="display: none;">
+                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
+                {{!-- <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button> --}}
+                <a href="/delete?username={{this.username}}&todolistName={{this.todo_list_name}}&todolistItem={{this.todo_item}}">Delete</a>
+            {{/each}}
+        </div>
+    </body>
+</html>

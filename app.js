@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Databse Connection Credentials
+// Database Connection Credentials
 
 let connection = mysql.createConnection({
     host: "sql6.freemysqlhosting.net",
@@ -88,7 +88,7 @@ app.post('/', (req,res) => {
 
                 if (usernameInDB == username && passwordInDB == password) {
                     userIsLoggedIn[username] = 1;
-                    let showExistingLists = "SELECT * FROM todo_list WHERE username='" + username + "'";
+                    let showExistingLists = "SELECT * FROM userwise_todolist_name WHERE username='" + username + "'";
 
                     connection.query(showExistingLists, (err,result,fields) => {
                         res.render('home', {
@@ -106,14 +106,14 @@ app.post('/', (req,res) => {
     console.log(userLogInCredentials);
 })
 
-// Insert ToDo Items
+// Create ToDo List
 
 app.post('/home', (req,res) => {
     let username = req.body.username;
     let todoListName = req.body.todo_list_name;
-    let listItems = req.body.list_items;
+    //let listItems = req.body.list_items;
 
-    let insertListQuery = "INSERT INTO todo_list (username, todo_list_name, todo_item) VALUES ('" + username + "'" + ", " + "'" + todoListName + "'" + ", " + "'" + listItems + "'" + ")";
+    let insertListQuery = "INSERT INTO userwise_todolist_name (username, todo_list_name) VALUES ('" + username + "'" + ", " + "'" + todoListName + "'" + ")";
 
     connection.query(insertListQuery, (err,result,fields) => {
         if (err) {
@@ -121,12 +121,54 @@ app.post('/home', (req,res) => {
         }
         
         else {
-            let showExistingLists = "SELECT * FROM todo_list WHERE username='" + username + "'";
+            let showExistingLists = "SELECT * FROM userwise_todolist_name WHERE username='" + username + "'";
 
             connection.query(showExistingLists, (err,result,fields) => {
                 res.render('home', {
                     layout:false,
                     username: username,
+                    result: result
+                });
+                console.log(result);
+            });
+        }
+    })
+})
+
+app.get('/add', (req,res) => {
+    let todoListNameObject = url.parse(req.url,true).query;
+
+    let selectQuery = "SELECT * FROM todo_list WHERE username= '" + todoListNameObject.username + "' AND todo_list_name= '" + todoListNameObject.todolistName + "'";
+    
+    connection.query(selectQuery, (err,result,fields) => {
+        res.render('listwiseitems', {
+            layout: false,
+            result: result,
+            username: todoListNameObject.username,
+            todolistName: todoListNameObject.todolistName
+        });
+    })
+})
+
+app.post('/add', (req,res) => {
+    let username = req.body.username;
+    let todoListName = req.body.todo_list_name;
+    let todoListItem = req.body.todo_list_item;
+
+    let insertQuery = "INSERT INTO todo_list (username, todo_list_name, todo_item) VALUES ('" + username + "', '" + todoListName + "', '" + todoListItem + "')";
+
+    connection.query(insertQuery, (err,result,fields) => {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            let showExistingItemsInList = "SELECT * FROM todo_list WHERE username='" + username + "' AND todo_list_name='" + todoListName + "'";
+
+            connection.query(showExistingItemsInList, (err,result,fields) => {
+                res.render('listwiseitems', {
+                    layout: false,
+                    username: username,
+                    todolistName: todoListName,
                     result: result
                 });
                 console.log(result);
@@ -144,12 +186,13 @@ app.get('/delete', (req,res) => {
             res.send(err);
         }
         else{
-            let showExistingLists = "SELECT * FROM todo_list WHERE username='" + todoListItemvalue.username + "'";
+            let showExistingLists = "SELECT * FROM todo_list WHERE username='" + todoListItemvalue.username + "' AND todo_list_name='" + todoListItemvalue.todolistName + "'";
 
             connection.query(showExistingLists, (err,result,fields) => {
-                res.render('home', {
+                res.render('listwiseitems', {
                     layout:false,
                     username: todoListItemvalue.username,
+                    todolistName: todoListItemvalue.todolistName,
                     result: result
                 });
                 console.log(result);
@@ -157,6 +200,31 @@ app.get('/delete', (req,res) => {
         }
     })
     //res.send(todoListItemvalue);
+})
+
+app.get('/deleteList', (req,res) => {
+    let todoListNameObject = url.parse(req.url,true).query;
+    
+    let deleteQuery = "DELETE FROM userwise_todolist_name WHERE username= '" + todoListNameObject.username + "' AND todo_list_name= '" + todoListNameObject.todolistName + "'"
+
+    connection.query(deleteQuery, (err,result) => {
+        if (err) {
+            res.send(err);
+        }
+
+        else {
+            let showExistingTodoLists = "SELECT * FROM userwise_todolist_name WHERE username='" + todoListNameObject.username + "'";
+ 
+            connection.query(showExistingTodoLists, (err,result,fields) => {
+                res.render('home', {
+                    layout: false,
+                    username: todoListNameObject.username,
+                    todolistName: todoListNameObject.todolistItem,
+                    result: result
+                })
+            })
+        }
+    })
 })
 
 const port = process.env.PORT || 3000;
