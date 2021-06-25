@@ -10,17 +10,15 @@
             <input type="text" id="items" name="username" value="{{username}}" style="display: none;">
             <label>Name Of Your Todo List</label>
             <input type="text" id="items" name="todo_list_name" value="{{todoListName}}">
-            <label>List Your Task</label>
-            <input type="text" id="items" name="list_items" value="{{listItems}}">
             <button type="submit" onClick="insertItems()">Send</button>
         </form>
 
         <div id="showResults">
             {{#each result}}
                 <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
-                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
-                {{!-- <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button> --}}
-                <a href="/delete?username={{this.username}}&todolistName={{this.todo_list_name}}&todolistItem={{this.todo_item}}">Delete</a>
+                <h4 id="{{this.todo_list_name}}">{{this.todo_list_name}}</h4>
+                <a href="/add?username={{this.username}}&todolistName={{this.todo_list_name}}">Add</a>
+                <a href="/deleteList?username={{this.username}}&todolistName={{this.todo_list_name}}">Delete List</a>
             {{/each}}
         </div>
     </body>
