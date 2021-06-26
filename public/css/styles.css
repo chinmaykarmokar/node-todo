@@ -1,0 +1,78 @@
+body {
+    background-color: #000033;
+}
+
+.test {
+    color: red;
+}
+
+.registerdiv {
+    background-image: linear-gradient(to right, #000099 , #00004d, #000099);
+    height: 560px;
+    padding-right: 50px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
+}
+
+.signupheader {
+    color: #fff;
+    padding-top: 23px;
+    font-family: Lobster;
+}
+
+.signupfield, select, textarea{
+    background-image: linear-gradient(to right, #00004d, #000099);
+    color: #fff;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #99ccff;
+    outline: none;
+    border-radius: 0px;
+    /* box-shadow: 0px 0px 8px rgba(0,0,0,0.7); */
+}
+
+textarea:focus, .signupfield:focus {
+    background-image: linear-gradient(to right, #00004d, #000099);
+    color: #fff;
+    height: 32px;
+    border-bottom: 1px solid #99ccff;
+    outline: none;
+    border-radius: 0px;
+}
+
+.registerheader {
+    border: 1px solid #99ccff;
+    max-width: 28%;
+    text-align: left;
+}
+
+.signupbtn {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(230,230,255,0.7);
+    padding: 5px;
+    width: 100%;
+    background-color: #8080ff;
+    color: #000033;
+    font-family: Bree Serif;
+    height: 45px;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    margin-left: -15px;
+}
+
+.titlename {
+    font-family: Lobster;
+}
+
+label {
+    color: #fff;
+    font-family: Asul;
+}
