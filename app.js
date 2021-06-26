@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 const url = require('url');
 
 let userIsLoggedIn = {}
@@ -36,7 +37,16 @@ connection.connect((err) => {
     if (err) throw err;
 })
 
-// GET Requests
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    secure: true,
+    auth: {
+        user: 'todobychinmay@gmail.com',
+        pass: '!champion'
+    }
+});
+
+// Render Views
 
 app.get('/', (req,res) => {
     res.render('login', {layout: false});
@@ -46,13 +56,12 @@ app.get('/signup', (req,res) => {
     res.render('register', {layout: false});
 })
 
-// POST Requests
-
 // Register
 
 app.post('/register', (req,res) => {
     let fName = req.body.f_name;
     let lName = req.body.l_name;
+    let email = req.body.email;
     let userName = req.body.u_name;
     let password = req.body.password;
 
@@ -63,6 +72,24 @@ app.post('/register', (req,res) => {
             res.send(err);
         }
         else {
+            let mailOptions = {
+                from: 'todobychinmay@gmail.com',
+                to: email,
+                subject: 'To Do by Chinmay: Registered successfully!',
+                html: `<p>Thank you for using <b>To Do by Chinmay</b>, you have registered successfully on our platform!</p>
+                <p>Login with the following credentials and create your first To Do List!</p>
+                <p><b>Username: </b>` + userName + `</p>
+                <p><b>Password: </b>` + password + `</p>
+                <p><Do not share these credentials with anyone. Thank you!/p>`
+            };
+    
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
             res.send('You have registered successfully!');
             console.log(insertQuery);
         }
@@ -106,7 +133,7 @@ app.post('/', (req,res) => {
     console.log(userLogInCredentials);
 })
 
-// Create ToDo List
+// Create ToDo List with specific Username
 
 app.post('/home', (req,res) => {
     let username = req.body.username;
@@ -134,6 +161,8 @@ app.post('/home', (req,res) => {
         }
     })
 })
+
+// Add Items to a particular Todo list
 
 app.get('/add', (req,res) => {
     let todoListNameObject = url.parse(req.url,true).query;
@@ -177,6 +206,8 @@ app.post('/add', (req,res) => {
     })
 })
 
+// Delete Item from a particular Todo list
+
 app.get('/delete', (req,res) => {
     let todoListItemvalue = url.parse(req.url,true).query;
     let deleteQuery = "DELETE FROM todo_list WHERE todo_item=" + " '" + todoListItemvalue.todolistItem + "'" + " AND username=" + " '" + todoListItemvalue.username + "'" + "AND todo_list_name= '" + todoListItemvalue.todolistName + "'";
@@ -201,6 +232,8 @@ app.get('/delete', (req,res) => {
     })
     //res.send(todoListItemvalue);
 })
+
+// Delete Todo List
 
 app.get('/deleteList', (req,res) => {
     let todoListNameObject = url.parse(req.url,true).query;
