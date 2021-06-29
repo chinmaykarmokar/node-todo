@@ -1,16 +1,40 @@
 <html>
     <head>
-        <title></title>
+        <title>To Do by Chinmay</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Asul&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="public/css/styles.css">
         <script type="text/javascript" src="public/js/scripts.js"></script>
     </head>
 
     <body>
-        <h1>Welcome {{username}}</h1>
+        <br>
+        <h1 class="homepagetitle">To Do by Chinmay</h1>
+        <h6 class="usernameheader"><i class="far fa-user"></i> {{username}} &nbsp; <button class="signoutbtn">Sign Out</button></h6>
+        <br><br>
         <form action="/home" method="POST">
             <input type="text" id="items" name="username" value="{{username}}" style="display: none;">
-            <label>Name Of Your Todo List</label>
-            <input type="text" id="items" name="todo_list_name" value="{{todoListName}}">
-            <button type="submit" onClick="insertItems()">Send</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input class="form-control listnameinput" type="text" id="items" name="todo_list_name" value="{{todoListName}}" placeholder="Name your To Do List">
+                            <button class="createlistbtn" type="submit"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>   
         </form>
 
         <div id="showResults">

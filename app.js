@@ -90,7 +90,7 @@ app.post('/register', (req,res) => {
                     console.log('Email sent: ' + info.response);
                 }
             });
-            res.send('You have registered successfully!');
+            res.render('login', {layout: false});
             console.log(insertQuery);
         }
     })

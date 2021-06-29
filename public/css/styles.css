@@ -2,12 +2,9 @@ body {
     background-color: #000033;
 }
 
-.test {
-    color: red;
-}
-
 .registerdiv {
-    background-image: linear-gradient(to right, #000099 , #00004d, #000099);
+    /* background-image: linear-gradient(to right, #000099 , #00004d, #000099); */
+    background-color: #000066;
     height: 560px;
     padding-right: 50px;
     border: none;
@@ -22,14 +19,14 @@ body {
 }
 
 .signupfield, select, textarea{
-    background-image: linear-gradient(to right, #00004d, #000099);
+    /* background-image: linear-gradient(to right, #00004d, #000099); */
+    background-color: #000066;
     color: #fff;
     height: 32px;
     border: none;
     border-bottom: 1px solid #99ccff;
     outline: none;
     border-radius: 0px;
-    /* box-shadow: 0px 0px 8px rgba(0,0,0,0.7); */
 }
 
 textarea:focus, .signupfield:focus {
@@ -59,17 +56,69 @@ textarea:focus, .signupfield:focus {
     height: 45px;
 }
 
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.centeredlogin {
+    padding: 100px;
+    margin-top: -5px;
     color: #fff;
-    margin-left: -15px;
+}
+
+.loginform {
+    margin-top: 55px;
 }
 
 .titlename {
     font-family: Lobster;
+}
+
+.homepagetitle {
+    text-align: center;
+    font-family: Lobster;
+    padding: 15px;
+    color: #fff;
+}
+
+.usernameheader {
+    color: #fff;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.signoutbtn {
+    border: none;
+    padding: 8px;
+    background-color: #ff0000;
+    box-shadow: 0px 0px 8px rgba(255,0,0,0.99);
+    border-radius: 10px;
+    color: #fff;
+}
+
+.listnameinput, select, textarea {
+    background-color: #000066;
+    box-shadow: 0px 0px 8px rgba(0,0,153,0.7);
+    border: none;
+    height: 50px;
+    text-align: center;
+}
+
+textarea:focus, .listnameinput:focus {
+    background-color: #000066;
+    /* box-shadow: 0px 0px 8px rgba(230,230,255,0.7); */
+    border: none;
+}
+
+.createlistbtn {
+    margin-left: 15px;
+    border: none;
+    width: 50px;
+    border-radius: 30px;
+    /* width: 10%; */
+    background-color: #8080ff;
+    box-shadow: 0px 0px 8px rgba(230,230,255,0.7);
+    color: #000033;
+}
+
+::placeholder {
+    color: #fff !important;
 }
 
 label {

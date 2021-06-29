@@ -1,24 +1,62 @@
 <html>
     <head>
-        <title></title>
+        <title>To Do by Chinmay | Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Asul&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="public/css/styles.css">
     </head>
 
     <body>
-        <form action="/" method="POST">
-            <label>Username</label>
-            <input type="text" name="username">
-            <label>Password</label>
-            <input type="password" name="password">
-            <button type="submit">Login</button>
-        </form>
-
-        <div id="showResults">
-            {{#each result}}
-                <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
-                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
-                {{!-- <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button> --}}
-                <a href="/delete?todolistItem={{this.todo_item}}">Delete</a>
-            {{/each}}
+       <br>
+       <div class="container registerdiv">
+            <div class="row">
+                <div class="col-md-6">                   
+                    <div class="centeredlogin">
+                        <h1 align="left" class="titlename">To Do <i class="fas fa-list-ul"></i></h1>
+                        <p align="left"><i>By Chinmay, v1.0</i></p>
+                        <br><br>
+                        <p><i class="fas fa-caret-right"></i> Sign Up to create your first To Do List!</p>
+                        <p><i class="fas fa-caret-right"></i> Not Signed Up Yet?</p>
+                        <br>
+                        <a href="/signup"><button class="signupbtn">Sign Up Here &nbsp; <i class="fas fa-user-plus"></i></button></a>
+                    </div>
+                </div>
+                <div class="col-md-6 loginform">
+                    <form action="/" method="POST">
+                        <h1 class="signupheader">Sign In</h1>
+                        <br>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input class="form-control signupfield" type="text" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control signupfield" type="password" name="password">
+                        </div>
+                        <br>                       
+                        <button class="signupbtn" type="submit">Sign In &nbsp; <i class="fas fa-sign-in-alt"></i></button>
+                    </form>
+                </div>
+            </div>     
         </div>
+       
+
+        {{!-- <div id="showResults"> --}}
+            {{!-- {{#each result}}
+                <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
+                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4> --}}
+                {{!-- <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button> --}}
+                {{!-- <a href="/delete?todolistItem={{this.todo_item}}">Delete</a>
+            {{/each}} --}}
+        {{!-- </div> --}}
     </body>
 </html>
