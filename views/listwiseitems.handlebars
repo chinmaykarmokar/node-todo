@@ -1,27 +1,77 @@
 <html>
     <head>
         <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Asul&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="public/css/styles.css">
         <script type="text/javascript" src="public/js/scripts.js"></script>
     </head>
 
     <body>
-        <h1>Welcome {{username}}</h1>
+        <br>
+        <h1 class="homepagetitle">To Do by Chinmay</h1>
+        <h6 class="usernameheader"><i class="far fa-user"></i> {{username}} &nbsp; <button class="signoutbtn">Sign Out</button></h6>
+        <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="alertdiv">
+                        <h6><i class="fas fa-exclamation-circle"></i> You are using {{todolistName}}. All items you add now will be added in this list.</h6>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+
+        <br><br>
+        
         <form action="/add" method="POST">
             <input type="text" id="items" name="username" value="{{username}}" style="display: none;">
             <input type="text" id="items" name="todo_list_name" value="{{todolistName}}" style="display: none;">
-            <h3>You are using {{todolistName}} created by you. All items you add now will be added in this list.</h3>
-            <label>List item in the {{todolistName}} list</label>
-            <input type="text" id="items" name="todo_list_item">
-            <button type="submit" onClick="insertItems()">Send</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input class="form-control listnameinput" type="text" id="items" name="todo_list_item" placeholder="Add items in {{todolistName}}">
+                            <button class="createlistbtn" type="submit" onClick="insertItems()"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
         </form>
 
+        <br><br>
         <div id="showResults">
             {{#each result}}
                 <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
                 <input type="text" id="items" name="todo_list_name" value="{{todolistName}}" style="display: none;">
-                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
-                {{!-- <button onclick="removetodoItem('{{this.todo_item}}')">Remove</button> --}}
-                <a href="/delete?username={{this.username}}&todolistName={{this.todo_list_name}}&todolistItem={{this.todo_item}}">Delete</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="listnamediv">
+                                <h4 id="{{this.todo_item}}">{{this.todo_item}}</h4>
+                                <br>
+                                <a href="/update?username={{this.username}}&todolistName={{this.todo_list_name}}&todolistItem={{this.todo_item}}"><button class="updbtn"><i class="fas fa-pen"></i></button></a>
+                                <a href="/delete?username={{this.username}}&todolistName={{this.todo_list_name}}&todolistItem={{this.todo_item}}"><button class="delbtn"><i class="fas fa-trash"></i></button></a>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
             {{/each}}
         </div>
     </body>
