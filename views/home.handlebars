@@ -38,11 +38,24 @@
         </form>
 
         <div id="showResults">
+            <br>
             {{#each result}}
                 <input type="text" id="items" name="username" value="{{this.username}}" style="display: none;">
-                <h4 id="{{this.todo_list_name}}">{{this.todo_list_name}}</h4>
-                <a href="/add?username={{this.username}}&todolistName={{this.todo_list_name}}">Add</a>
-                <a href="/deleteList?username={{this.username}}&todolistName={{this.todo_list_name}}">Delete List</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="listnamediv">
+                                <h4 id="{{this.todo_list_name}}">{{this.todo_list_name}}</h4>
+                                <br>
+                                <a href="/add?username={{this.username}}&todolistName={{this.todo_list_name}}"><button class="addbtn"><i class="fas fa-plus"></i></button></a>
+                                <a href="/deleteList?username={{this.username}}&todolistName={{this.todo_list_name}}"><button class="delbtn"><i class="fas fa-trash"></i></button></a>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
             {{/each}}
         </div>
     </body>

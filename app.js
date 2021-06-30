@@ -260,6 +260,24 @@ app.get('/deleteList', (req,res) => {
     })
 })
 
+// Update Todo list item 
+
+app.get('/update', (req,res) => {
+    let todoListNameandItem = url.parse(req.url,true).query;
+
+    let updateQuery = "UPDATE todo_list SET todo_item= '" +  + "' WHERE todo_item= '" + todoListNameandItem.todolistItem + "' AND todo_list_name= '" + todoListNameandItem.todolistName + "'";
+    
+    connection.connect(updateQuery, (err,result) => {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.send(todoListNameandItem)
+            // res.render('listwiseitems', {layout: false});
+        }
+    })
+})
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);

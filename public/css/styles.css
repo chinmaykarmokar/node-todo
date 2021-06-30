@@ -111,10 +111,63 @@ textarea:focus, .listnameinput:focus {
     border: none;
     width: 50px;
     border-radius: 30px;
-    /* width: 10%; */
     background-color: #8080ff;
     box-shadow: 0px 0px 8px rgba(230,230,255,0.7);
     color: #000033;
+}
+
+.listnamediv {
+    /* background-image: linear-gradient(to right, #000099 , #000066, #000099); */
+    background-color: #000080;
+    color: #fff;
+    height: 150px;
+    padding: 25px;
+    box-shadow: 0px 0px 16px rgba(0,0,255,0.7);
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.addbtn {
+    width: 42px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #00cc99;
+    box-shadow: 0px 0px 30px rgba(0,204,153,0.95);
+    color: #fff;
+}
+
+.delbtn {
+    width: 42px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #ff0000;
+    box-shadow: 0px 0px 30px rgba(255,0,0,0.95);
+    margin-left: 5px;
+    color: #fff;
+}
+
+.updbtn {
+    width: 42px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #ff9900;
+    box-shadow: 0px 0px 30px rgba(255,153,0,0.95);
+    margin-left: 5px;
+    color: #fff;
+}
+
+.alertdiv {
+    color: #fff;
+    background-color: #8080ff;
+    height: 50px;
+    padding: 12px;
+    text-align: center;
+    border: none;
+    box-shadow: 0px 0px 30px rgba(128,128,255,0.8);
 }
 
 ::placeholder {
