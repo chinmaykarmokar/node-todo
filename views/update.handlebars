@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>To Do by Chinmay | Update Item From to Do List</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Asul&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        <link rel="stylesheet" type="text/css" href="public/css/styles.css">
+    </head>
+    <body class="updbody">
+        <br>
+        <h1 class="homepagetitle">To Do by Chinmay</h1>
+        <h6 class="usernameheader"><i class="far fa-user"></i> {{username}} &nbsp; <a href="/"><button class="signoutbtn">Sign Out <i class="fas fa-sign-out-alt"></i></button></a></h6>
+        <br><br>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="updalertdiv">
+                        <h6><i class="fas fa-exclamation-circle"></i> To Do item: <b>{{listItem}}</b> will be updated from the To Do list: <b>{{listName}}</b></h6>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+
+        <br><br><br>
+        
+        <form action="/update" method="POST">
+            <input type="text" id="items" name="username" value="{{username}}" style="display: none;">
+            <input type="text" id="items" name="listname" value="{{listName}}" style="display: none;">
+            <input type="text" id="items" name="listitem" value="{{listItem}}" style="display: none;">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input class="form-control listnameinput" type="text" name="updateditem" placeholder="Update your To Do List Item">
+                            <button class="updatebtn" type="submit"><i class="fas fa-pen"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>   
+        </form>
+
+        <br><br>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 footerdiv">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5><b><i class="far fa-user"></i> Chinmay Karmokar</b></h5>
+                            <hr>
+                            <h4 style="font-family: Bree Serif;">SELF</h4>
+                            <hr align="left" class="footerhr">
+                            <p style="font-size: 14.2px;">
+                                I am a second year electrical engineering student who has a lot of interest in programming and specifically in front-end development.
+                                <br><br>                              
+                                I work with JavaScript. I look forward to working in NodeJS.
+                                <br><br>
+                                You can check my GitHub profile for more.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 style="font-family: Bree Serif;">STACK</h4>
+                            <hr align="left" class="footerhr">
+                            <h1><i class="fab fa-node"></i> &nbsp; <i class="fab fa-css3-alt"></i> &nbsp; <i class="fas fa-database"></i></h1>
+                            <p>NodeJS, CSS, MySQL, HandlebarsJS</p>
+                            <br>
+                            <h4 style="font-family: Bree Serif;">SOCIALS</h4>
+                            <hr align="left" class="footerhr">
+                            <h1>
+                                <a href="https://www.linkedin.com/in/chinmay-karmokar-b0042b174" target="_blank" style="color: #99ccff; text-decoration: none;"><i class="fab fa-linkedin"></i></a> 
+                                <a href="https://github.com/chinmaykarmokar" target="_blank" style="color: #99ccff; text-decoration: none;"><i class="fab fa-github"></i></a>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>        
+    </body>
+</html>

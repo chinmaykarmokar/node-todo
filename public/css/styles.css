@@ -2,10 +2,22 @@ body {
     background-color: #000033;
 }
 
+.updbody {
+    height: 115%;
+}
+
 .registerdiv {
-    /* background-image: linear-gradient(to right, #000099 , #00004d, #000099); */
     background-color: #000066;
     height: 560px;
+    padding-right: 50px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
+}
+
+.logindiv {
+    background-color: #000066;
+    height: 480px;
     padding-right: 50px;
     border: none;
     border-radius: 20px;
@@ -93,15 +105,17 @@ textarea:focus, .signupfield:focus {
 }
 
 .listnameinput, select, textarea {
-    background-color: #000066;
-    box-shadow: 0px 0px 8px rgba(0,0,153,0.7);
+    background-color: #00007d;
+    box-shadow: 0px 0px 16px rgba(0,0,153,0.7);
     border: none;
     height: 50px;
     text-align: center;
+    color: #fff;
 }
 
 textarea:focus, .listnameinput:focus {
-    background-color: #000066;
+    background-color: #000099;
+    color: #fff;
     /* box-shadow: 0px 0px 8px rgba(230,230,255,0.7); */
     border: none;
 }
@@ -122,10 +136,15 @@ textarea:focus, .listnameinput:focus {
     color: #fff;
     height: 150px;
     padding: 25px;
-    box-shadow: 0px 0px 16px rgba(0,0,255,0.7);
+    box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
     border: none;
     border-radius: 20px;
     margin-top: 10px;
+}
+
+.listnameanditems {
+    font-family: "Ubuntu";
+    font-size: 25px;
 }
 
 .addbtn {
@@ -134,7 +153,7 @@ textarea:focus, .listnameinput:focus {
     border: none;
     border-radius: 50%;
     background-color: #00cc99;
-    box-shadow: 0px 0px 30px rgba(0,204,153,0.95);
+    box-shadow: 0px 0px 15px rgba(0,204,153,0.95);
     color: #fff;
 }
 
@@ -144,7 +163,7 @@ textarea:focus, .listnameinput:focus {
     border: none;
     border-radius: 50%;
     background-color: #ff0000;
-    box-shadow: 0px 0px 30px rgba(255,0,0,0.95);
+    box-shadow: 0px 0px 15px rgba(255,0,0,0.95);
     margin-left: 5px;
     color: #fff;
 }
@@ -155,9 +174,9 @@ textarea:focus, .listnameinput:focus {
     border: none;
     border-radius: 50%;
     background-color: #ff9900;
-    box-shadow: 0px 0px 30px rgba(255,153,0,0.95);
+    box-shadow: 0px 0px 15px rgba(255,153,0,0.95);
     margin-left: 5px;
-    color: #fff;
+    color: #000033;
 }
 
 .alertdiv {
@@ -170,7 +189,44 @@ textarea:focus, .listnameinput:focus {
     box-shadow: 0px 0px 30px rgba(128,128,255,0.8);
 }
 
+.updalertdiv {
+    color: #fff;
+    background-color: #8080ff;
+    height: 60px;
+    padding: 12px;
+    text-align: center;
+    border: none;
+    box-shadow: 0px 0px 30px rgba(128,128,255,0.8);
+}
+
+.updatebtn {
+    margin-left: 15px;
+    border: none;
+    width: 50px;
+    border-radius: 30px;
+    background-color: #ff9900;
+    box-shadow: 0px 0px 8px rgba(230,230,255,0.7);
+    color: #000033;
+}
+
+.footerdiv {
+    background-color: #000088;
+    height: 370px;
+    color: #99ccff;
+    margin-bottom: 25px;
+    padding: 40px;
+    border-radius: 20px;
+    font-family: "Ubuntu";
+    box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
+}
+
+.footerhr {
+    border: solid #8080ff;
+    width: 30%;
+}
+
 ::placeholder {
+    font-family: "Ubuntu";
     color: #fff !important;
 }
 
