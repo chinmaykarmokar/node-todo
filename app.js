@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const url = require('url');
+const credentials = require('./public/js/modules');
 
 let userIsLoggedIn = {}
 let todoItemID = 1;
@@ -24,10 +25,10 @@ app.use(bodyParser.json());
 // Database Connection Credentials
 
 let connection = mysql.createConnection({
-    host: "sql6.freemysqlhosting.net",
-    user: "sql6406059",
-    password: "xS6yR7ljMf",
-    database: "sql6406059",
+    host: credentials.host,
+    user: credentials.user,
+    password: credentials.password,
+    database: credentials.database,
     tls: {
         rejectUnauthorized: false
     }
@@ -41,8 +42,8 @@ let transporter = nodemailer.createTransport({
     service: 'gmail',
     secure: true,
     auth: {
-        user: 'todobychinmay@gmail.com',
-        pass: '!champion'
+        user: credentials.email,
+        pass: credentials.password
     }
 });
 
@@ -265,15 +266,41 @@ app.get('/deleteList', (req,res) => {
 app.get('/update', (req,res) => {
     let todoListNameandItem = url.parse(req.url,true).query;
 
-    let updateQuery = "UPDATE todo_list SET todo_item= '" +  + "' WHERE todo_item= '" + todoListNameandItem.todolistItem + "' AND todo_list_name= '" + todoListNameandItem.todolistName + "'";
+    // let updateQuery = "UPDATE todo_list SET todo_item= '" +  + "' WHERE todo_item= '" + todoListNameandItem.todolistItem + "' AND todo_list_name= '" + todoListNameandItem.todolistName + "'";
     
-    connection.connect(updateQuery, (err,result) => {
+    // res.send(todoListNameandItem);
+    res.render('update', {
+        layout: false,
+        username: todoListNameandItem.username,
+        listName: todoListNameandItem.todolistName,
+        listItem: todoListNameandItem.todolistItem
+    })
+})
+
+app.post('/update', (req,res) => {
+    let username = req.body.username;
+    let listName = req.body.listname;
+    let listItem = req.body.listitem;
+    let updatedItem = req.body.updateditem;
+
+    let updateQuery = "UPDATE todo_list SET todo_item= '" + updatedItem + "' WHERE todo_item= '" + listItem + "' AND todo_list_name= '" + listName + "'";
+
+    connection.query(updateQuery, (err,result) => {
         if (err) {
             res.send(err);
         }
         else {
-            res.send(todoListNameandItem)
-            // res.render('listwiseitems', {layout: false});
+            let showExistingLists = "SELECT * FROM todo_list WHERE username='" + username + "' AND todo_list_name='" + listName + "'";
+            
+            connection.query(showExistingLists, (err,result,fields) => {
+                res.render('listwiseitems', {
+                    layout:false,
+                    username: username,
+                    todolistName: listName,
+                    result: result
+                });
+                console.log(result);
+            });
         }
     })
 })
