@@ -38,6 +38,8 @@ connection.connect((err) => {
     if (err) throw err;
 })
 
+// Gmail SMTP setup
+
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     secure: true,
