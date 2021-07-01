@@ -43,7 +43,7 @@ let transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: credentials.email,
-        pass: credentials.password
+        pass: credentials.pass
     }
 });
 
