@@ -384,3 +384,67 @@ label {
         margin-right: 5px;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .centeredlogin {
+        width: 443px;
+        text-align: left;
+        margin-left: -50px;
+    } 
+
+    .logindiv {
+        height: 450px;
+        font-size: 13.95px;
+        width: 92%;
+    }
+
+    .registerdiv {
+        width: 92%;
+        height: 550px;
+        font-size: 13.95px;
+    }
+
+    .footerdiv {
+        height: 500px;
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+    .listitemdiv {
+        height: 175px;
+    }
+
+    .alertdiv {
+        height: 65px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .updbody {
+        height: 990px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .centeredlogin {
+        width: 443px;
+        text-align: left;
+        margin-left: -50px;
+    } 
+
+    .logindiv {
+        height: 450px;
+        font-size: 13.98px;
+        width: 92%;
+    }
+
+    .footerdiv {
+        height: 420px;
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+    .updbody {
+        height: 892px;
+    }
+}
