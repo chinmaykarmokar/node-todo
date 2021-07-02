@@ -31,7 +31,6 @@ body {
 }
 
 .signupfield, select, textarea{
-    /* background-image: linear-gradient(to right, #00004d, #000099); */
     background-color: #000066;
     color: #fff;
     height: 32px;
@@ -131,10 +130,20 @@ textarea:focus, .listnameinput:focus {
 }
 
 .listnamediv {
-    /* background-image: linear-gradient(to right, #000099 , #000066, #000099); */
     background-color: #000080;
     color: #fff;
     height: 150px;
+    padding: 25px;
+    box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.listitemdiv {
+    background-color: #000080;
+    color: #fff;
+    height: 160px;
     padding: 25px;
     box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
     border: none;
@@ -233,4 +242,145 @@ textarea:focus, .listnameinput:focus {
 label {
     color: #fff;
     font-family: Asul;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 425px) {
+    .loginbody {
+        height: 900px;
+    }
+
+    .titlename {
+        font-size: 35px;
+    }
+
+    .logindiv {
+        height: 795px;
+        font-size: 13.9px;
+        width: 92%;
+    }
+
+    .loginform {
+        margin-top: -30px;
+        margin-left: 40px;
+    }
+
+    .centeredlogin {
+        width: 443px;
+        text-align: left;
+        margin-left: -50px;
+    }
+
+    .registerdiv {
+        width: 92%;
+        height: 930px;
+        font-size: 13.9px;
+    }
+
+    .registerform {
+        margin-top: -60px;
+        margin-left: 40px;
+    }
+
+    .registerbody {
+        background-color: #000033;
+        height: 980px;
+    }
+
+    .footerdiv {
+        height: 680px;
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+    .listitemdiv {
+        height: 175px;
+    }
+
+    .alertdiv {
+        height: 65px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .updbody {
+        height: 1172px;
+    }
+
+    .updalertdiv {
+        height: 80px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .centeredlogin {
+        width: 395px;
+        text-align: left;
+        margin-left: -50px;
+    } 
+
+    .registerbody {
+        background-color: #000033;
+        height: 1010px;
+    }
+
+    .registerdiv {
+        width: 92%;
+        height: 960px;
+        font-size: 13.9px;
+    }
+
+    .footerdiv {
+        height: 690px;
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+    .alertdiv {
+        height: 75px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .updbody {
+        height: 1182px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .centeredlogin {
+        width: 342px;
+        text-align: left;
+        margin-left: -50px;
+    } 
+
+    .registerbody {
+        background-color: #000033;
+        height: 1020px;
+    }
+
+    .registerdiv {
+        width: 92%;
+        height: 980px;
+        font-size: 13.9px;
+    }
+
+    .footerdiv {
+        height: 760px;
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+    .updbody {
+        height: 1280px;
+    }
+
+    .updalertdiv {
+        height: 100px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
