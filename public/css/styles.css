@@ -234,6 +234,68 @@ textarea:focus, .listnameinput:focus {
     width: 30%;
 }
 
+.errordiv {
+    color: #fff;
+    font-family: Ubuntu;
+    background-color: #000088;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.errormsg {
+    padding: 35px;
+    color: #fff;
+    font-family: Ubuntu;
+    background-color: #000088;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-left: 10px;
+}
+
+.errorheader {
+    font-family: "Bree Serif";
+}
+
+.errorhr {
+    border: solid #8080ff;
+    width: 48%;
+}
+
+.fa-bomb {
+    font-size: 45px;
+    margin-left: 5px;
+    color: #8080ff;
+}
+
+.img-fluid {
+    background-size: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-top: 20px;
+    padding: 18px;
+}
+
+.errorpagesignin {
+    margin-top: 2px;
+    border: none;
+    width: 75px;
+    height: 34px;
+    background-color: #8080ff;
+    box-shadow: 0px 0px 8px rgba(128,128,255,0.8);
+    border-radius: 20px;
+}
+
+.errorpagesignup {
+    margin-top: 2px;
+    border: none;
+    width: 75px;
+    height: 34px;
+    margin-left: 5px;
+    background-color: #8080ff;
+    box-shadow: 0px 0px 8px rgba(128,128,255,0.8);
+    border-radius: 20px;
+}
+
 ::placeholder {
     font-family: "Ubuntu";
     color: #fff !important;
@@ -313,6 +375,16 @@ label {
         margin-left: 5px;
         margin-right: 5px;
     }
+
+    .errordiv {
+        display: none;
+    }
+
+    .errormsg {
+        border-radius: 20px;
+        margin-right: 10px;
+        box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
+    }
 }
 
 @media only screen and (max-width: 375px) {
@@ -348,6 +420,16 @@ label {
     .updbody {
         height: 1182px;
     }
+
+    .errordiv {
+        display: none;
+    }
+
+    .errormsg {
+        border-radius: 20px;
+        margin-right: 10px;
+        box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
+    }
 }
 
 @media only screen and (max-width: 320px) {
@@ -382,6 +464,16 @@ label {
         height: 100px;
         margin-left: 5px;
         margin-right: 5px;
+    }
+
+    .errordiv {
+        display: none;
+    }
+
+    .errormsg {
+        border-radius: 20px;
+        margin-right: 10px;
+        box-shadow: 0px 0px 8px rgba(0,0,255,0.7);
     }
 }
 
@@ -423,6 +515,10 @@ label {
     .updbody {
         height: 990px;
     }
+
+    .img-fluid {
+        margin-top: 90px;
+    }
 }
 
 @media only screen and (min-width: 992px) {
@@ -446,5 +542,21 @@ label {
 
     .updbody {
         height: 892px;
+    }
+
+    .img-fluid {
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .footerdiv {
+        height: 370px;
+        margin-left: 11px;
+        margin-right: 11px;
+    }
+
+    .img-fluid {
+        margin-top: 25px;
     }
 }

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const url = require('url');
 const credentials = require('./public/js/modules');
+var favicon = require('serve-favicon');
 
 let userIsLoggedIn = {}
 let todoItemID = 1;
@@ -13,6 +14,9 @@ const app = express();
 
 // Serving Static Files
 app.use('/public',express.static('./public/'));
+
+// Serve Favicon 
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // View engine setup
 app.engine('handlebars', exphbs());
@@ -72,7 +76,11 @@ app.post('/register', (req,res) => {
 
     connection.query(insertQuery, (err) => {
         if (err) {
-            res.send(err);
+            let errorMessage = err.sqlMessage.slice(0,15);
+            res.render('error', {
+                layout: false,
+                errorMessage: errorMessage + '. This username already exists.'
+            });
         }
         else {
             let mailOptions = {
@@ -304,6 +312,15 @@ app.post('/update', (req,res) => {
                 console.log(result);
             });
         }
+    })
+})
+
+// Directing to improper routes
+
+app.get('*', (req,res) => {
+    res.render('error', {
+        layout: false,
+        errorMessage: 'Invalid. Page not found. Sign In to continue.'
     })
 })
 
