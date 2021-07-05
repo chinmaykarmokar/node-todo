@@ -41,7 +41,7 @@ body {
 }
 
 textarea:focus, .signupfield:focus {
-    background-image: linear-gradient(to right, #00004d, #000099);
+    background-color: #000066;
     color: #fff;
     height: 32px;
     border-bottom: 1px solid #99ccff;
@@ -115,7 +115,6 @@ textarea:focus, .signupfield:focus {
 textarea:focus, .listnameinput:focus {
     background-color: #000099;
     color: #fff;
-    /* box-shadow: 0px 0px 8px rgba(230,230,255,0.7); */
     border: none;
 }
 
