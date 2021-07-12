@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const url = require('url');
 const credentials = require('./public/js/module');
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config()
 var favicon = require('serve-favicon');
 
 let userIsLoggedIn = {}
@@ -30,10 +31,10 @@ app.use(bodyParser.json());
 // Database Connection Credentials
 
 let connection = mysql.createConnection({
-    host: credentials.host,
-    user: credentials.user,
-    password: credentials.password,
-    database: credentials.database,
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     tls: {
         rejectUnauthorized: false
     }
@@ -49,8 +50,8 @@ let transporter = nodemailer.createTransport({
     service: 'gmail',
     secure: true,
     auth: {
-        user: credentials.email,
-        pass: credentials.pass
+        user: process.env.EMAIL,
+        pass: process.env.PASS
     }
 });
 
