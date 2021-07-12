@@ -30,11 +30,10 @@ app.use(bodyParser.json());
 // Database Connection Credentials
 
 let connection = mysql.createConnection({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database,
-    port: 3306,
+    host: credentials.host,
+    user: credentials.user,
+    password: credentials.password,
+    database: credentials.database,
     tls: {
         rejectUnauthorized: false
     }
@@ -50,8 +49,8 @@ let transporter = nodemailer.createTransport({
     service: 'gmail',
     secure: true,
     auth: {
-        user: process.env.email,
-        pass: process.env.pass
+        user: credentials.email,
+        pass: credentials.pass
     }
 });
 
