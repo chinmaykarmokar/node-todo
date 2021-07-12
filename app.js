@@ -4,9 +4,6 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const url = require('url');
-const credentials = require('./public/js/module');
-const dotenv = require('dotenv');
-dotenv.config()
 var favicon = require('serve-favicon');
 
 let userIsLoggedIn = {}
