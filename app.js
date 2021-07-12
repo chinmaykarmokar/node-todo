@@ -39,9 +39,9 @@ let connection = mysql.createConnection({
     }
 })
 
-// connection.connect((err) => {
-//     if (err) throw err;
-// })
+connection.connect((err) => {
+    if (err) throw err;
+})
 
 // Gmail SMTP setup
 
