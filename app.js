@@ -34,7 +34,6 @@ let connection = mysql.createConnection({
     user: process.env.user,
     password: process.env.password,
     database: process.env.database,
-    port: process.env.PORT,
     tls: {
         rejectUnauthorized: false
     }
